@@ -11,7 +11,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-      
+
       # Cache apt packages
     - name: Cache apt packages
       uses: actions/cache@v4
@@ -45,7 +45,7 @@ jobs:
       run: python selenium_script.py
 
     - name: Upload HTML snapshots
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: html-snapshots
         path: html_snapshots/

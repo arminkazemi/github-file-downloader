@@ -50,3 +50,11 @@ jobs:
         name: html-snapshots
         path: html_snapshots/
         retention-days: 7
+
+    - name: Commit HTML snapshots
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add html_snapshots/
+        git commit -m "Add HTML snapshots" || echo "No changes to commit"
+        git push

@@ -14,7 +14,7 @@ driver = webdriver.Chrome(options=options)
 # Create directory for HTML files
 os.makedirs('html_snapshots', exist_ok=True)
 
-url = "https://google.com"
+url = "https://kaggle.com"
 
 print(f"Visiting: {url}")
 driver.get(url)

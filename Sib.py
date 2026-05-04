@@ -1,31 +1,18 @@
 from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
-from webdriver_manager.chrome import ChromeType
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 import time
 import os
 
+options = webdriver.ChromeOptions()
+options.add_argument('--headless')
+options.add_argument('--no-sandbox')
+options.add_argument('--disable-dev-shm-usage')
+
+# Use system ChromeDriver (already in PATH on ubuntu-latest)
+driver = webdriver.Chrome(options=options)
+
 # Create directory for HTML files
 os.makedirs('html_snapshots', exist_ok=True)
-
-chrome_options = Options()
-options = [
-    "--headless",
-    "--disable-gpu",
-    "--window-size=1920,1200",
-    "--ignore-certificate-errors",
-    "--disable-extensions",
-    "--no-sandbox",
-    "--disable-dev-shm-usage"
-]
-for option in options:
-    chrome_options.add_argument(option)
-
-# driver_path = ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()
-chrome_service = Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install())
-# driver = webdriver.Chrome(driver_path, options=chrome_options)
-driver = webdriver.Chrome(service=chrome_service,options=chrome_options)
 
 url = "https://google.com"
 

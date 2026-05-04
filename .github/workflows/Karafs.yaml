@@ -37,9 +37,13 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install selenium webdriver_manager
+        pip install selenium 
         sudo apt-get update
-        sudo apt-get install -y chromium-browser chromium-chromedriver
+
+    - name: Verify Chrome installation
+      run: |
+        google-chrome --version
+        chromedriver --version
 
     - name: Run Selenium and save HTML
       run: python Sib.py

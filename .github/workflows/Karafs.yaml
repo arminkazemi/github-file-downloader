@@ -24,7 +24,7 @@ jobs:
         sudo apt-get install -y chromium-browser chromium-chromedriver
 
     - name: Run Selenium and save HTML
-      run: python selenium_script.py
+      run: python Sib.py
 
     - name: Upload HTML snapshots
       uses: actions/upload-artifact@v3

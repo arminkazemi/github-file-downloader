@@ -11,6 +11,24 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+      
+      # Cache apt packages
+    - name: Cache apt packages
+      uses: actions/cache@v4
+      with:
+        path: /var/cache/apt/archives
+        key: ${{ runner.os }}-apt-${{ hashFiles('**/your-package-list.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-apt-
+
+    # Cache pip (Python)
+    - name: Cache pip
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
 
     - name: Set up Python
       uses: actions/setup-python@v4
@@ -24,10 +42,10 @@ jobs:
         sudo apt-get install -y chromium-browser chromium-chromedriver
 
     - name: Run Selenium and save HTML
-      run: python Sib.py
+      run: python selenium_script.py
 
     - name: Upload HTML snapshots
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v3
       with:
         name: html-snapshots
         path: html_snapshots/

@@ -25,7 +25,7 @@ for option in options:
 # driver_path = ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()
 chrome_service = Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install())
 # driver = webdriver.Chrome(driver_path, options=chrome_options)
-driver = webdriver.Chrome(chrome_service, options=chrome_options)
+driver = webdriver.Chrome(service=chrome_service,options=chrome_options)
 
 url = "https://google.com"
 
